@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -27,10 +23,43 @@ namespace Zero
   /// </summary>
   public class Dialog : VisualElement
   {
+    private string _miscInfo;
     private bool _open = false;
     private DialogType _type;
-    private string _name;
-    public new class UxmlFactory : UxmlFactory<Dialog> { }
+    private string _title;
+    private string _description;
+    public new class UxmlFactory : UxmlFactory<Dialog, UxmlTraits> { }
+
+    public new class UxmlTraits : VisualElement.UxmlTraits
+    {
+      readonly UxmlEnumAttributeDescription<DialogType> _typeAttr = new UxmlEnumAttributeDescription<DialogType>
+      {
+        name = "type",
+        defaultValue = DialogType.Info
+      };
+
+      readonly UxmlStringAttributeDescription _descriptionAttr = new UxmlStringAttributeDescription
+      {
+        name = "description",
+        defaultValue = ""
+      };
+
+      readonly UxmlStringAttributeDescription _titleAttr = new UxmlStringAttributeDescription
+      {
+        name = "title",
+        defaultValue = ""
+      };
+
+      public override void Init(VisualElement ve, IUxmlAttributes attrs, CreationContext ctx)
+      {
+        base.Init(ve, attrs, ctx);
+        Dialog thisDialog = ve as Dialog;
+
+        thisDialog.Type = _typeAttr.GetValueFromBag(attrs, ctx);
+        thisDialog.Description = _descriptionAttr.GetValueFromBag(attrs, ctx);
+        thisDialog.Title = _titleAttr.GetValueFromBag(attrs, ctx);
+      }
+    }
 
     /// <summary>
     /// Event fired when the confirm button is clicked.
@@ -53,9 +82,8 @@ namespace Zero
     {
       LoadUXMLAsset();
       // NOTE: Very basic defaults just so we don't have totally invalid values for the dialog
-      _type = DialogType.Info;
-      _name = $"Dialog-{System.Guid.NewGuid()}";
-      contentText.text = _name;
+      Type = DialogType.Info;
+      contentText.text = name;
 
       confirmButton.RegisterCallback<ClickEvent>(evt =>
       {
@@ -80,10 +108,10 @@ namespace Zero
     public Dialog(DialogType type, string name, string title, string description)
     {
       LoadUXMLAsset();
-      _type = type;
-      _name = name;
-      titleText.text = title;
-      contentText.text = description;
+      Type = type;
+      Title = title;
+      this.name = name;
+      Description = description;
 
       confirmButton.RegisterCallback<ClickEvent>(evt =>
       {
@@ -118,10 +146,10 @@ namespace Zero
       Action onCancelCallback)
     {
       LoadUXMLAsset();
-      _type = type;
-      _name = name;
-      titleText.text = title;
-      contentText.text = description;
+      this.name = name;
+      Type = type;
+      Title = title;
+      Description = description;
 
       OnConfirm += onConfirmCallback;
       OnCancel += onCancelCallback;
@@ -152,10 +180,6 @@ namespace Zero
 
     private void InitializeUI()
     {
-      if (_type == DialogType.Info)
-      {
-        cancelButton.AddToClassList("dialog-hidden-element");
-      }
       Open = false;
     }
 
@@ -187,14 +211,49 @@ namespace Zero
       }
     }
 
-    public string Name
+    public string Title
     {
-      get { return _name; }
+      get { return _title; }
+      set
+      {
+        _title = value;
+        titleText.text = _title;
+      }
+    }
+
+    public string Description
+    {
+      get { return _description; }
+      set
+      {
+        _description = value;
+        contentText.text = _description;
+      }
     }
 
     public DialogType Type
     {
       get { return _type; }
+      set
+      {
+        _type = value;
+        ToggleCancelButton();
+      }
+    }
+
+    public string MiscInfo
+    {
+      get { return _miscInfo; }
+      set { _miscInfo = value; }
+    }
+    private void ToggleCancelButton()
+    {
+      if (_type == DialogType.Confirmation)
+      {
+        cancelButton.RemoveFromClassList("dialog-hidden-element");
+        return;
+      }
+      cancelButton.AddToClassList("dialog-hidden-element");
     }
   }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -29,8 +28,6 @@ public class HelloWorld : MonoBehaviour
   private void OnEnable() { }
 
   private void OnDisable() { }
-
-  private void Destroy() { }
 
   private void CloseApplication()
   {
