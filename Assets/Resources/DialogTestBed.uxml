@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement class="list-of-buttons">
+        <ui:Button class="dialog-button-activator" name="first-dialog-button" text="Activate First Dialog" />
+        <ui:Button class="dialog-button-activator" name="second-dialog-button" text="Activate Second Dialog" />
+        <ui:Button class="dialog-button-activator" name="third-dialog-button" text="Activate Third Dialog" />
+        <ui:Button class="dialog-button-activator" name="fourth-dialog-button" text="Activate Fourth Dialog" />
+        <ui:Button class="dialog-button-activator" name="fifth-dialog-button" text="Activate Fifth Dialog" />
+    </ui:VisualElement>
+    
+    <Zero.DialogPortal>
+        <Zero.Dialog name="FirstDialog" />
+        <Zero.Dialog name="SecondDialog" />
+        <Zero.Dialog name="ThirdDialog" />
+        <Zero.Dialog name="FourthDialog" />
+        <Zero.Dialog name="FifthDialog" />
+    </Zero.DialogPortal>
+</ui:UXML>

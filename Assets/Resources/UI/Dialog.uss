@@ -1,0 +1,63 @@
+.dialog-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  max-height: 500px;
+  background-color: #eee;
+  color: #222;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.dialog-content, .dialog-title, .dialog-footer {
+  overflow: hidden;
+  width: 100%;
+}
+
+.dialog-title {
+  height: 75px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+  font-size: 36px;
+  -unity-font-style: bold;
+}
+
+.dialog-footer {
+  align-self: flex-end;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height: 75px;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.dialog-content {
+  min-height: 100px;
+  border-radius: 8px;
+  border-color: #222;
+  border-width: 1px;
+  padding: 8px;
+}
+
+.dialog-content > Label {
+  white-space: normal;
+}
+
+.dialog-container .unity-scroller__high-button {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.dialog-container .unity-scroller__low-button {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.dialog-hidden-element {
+  display: none;
+}

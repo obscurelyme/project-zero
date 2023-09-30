@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+  <Style src="Dialog.uss" />
+  <ui:VisualElement class="dialog-container">
+    <ui:VisualElement class="dialog-title">
+      <ui:Label name="dialog-title-content" text="Lorem ipsum"/>
+    </ui:VisualElement>
+    <ui:ScrollView class="dialog-content">
+      <ui:Label name="dialog-content-text" text="" />
+    </ui:ScrollView>
+    <ui:VisualElement class="dialog-footer">
+      <ui:Button name="dialog-confirm-button" text="Yes" />
+      <ui:Button name="dialog-cancel-button" text="No" />
+    </ui:VisualElement>
+  </ui:VisualElement>
+</ui:UXML>
