@@ -1,4 +1,5 @@
 #nullable enable
+using Unity.VisualScripting;
 using UnityEngine.UIElements;
 
 
@@ -9,11 +10,20 @@ namespace Zero
     Heading1,
     Heading2,
     Heading3,
-    Body
+    Body,
+    Disclaimer
   }
 
   public class Text : TextElement
   {
+    private static string[] textClassLists = {
+      "zero-text-heading-1",
+      "zero-text-heading-2",
+      "zero-text-heading-3",
+      "zero-text-body",
+      "zero-text-disclaimer"
+    };
+
     private TextType _type;
 
     public TextType Type
@@ -22,14 +32,35 @@ namespace Zero
       set
       {
         _type = value;
-        if (_type == TextType.Heading1)
+        switch (_type)
         {
-          RemoveFromClassList("zero-text-body");
-          AddToClassList("zero-text-heading");
-          return;
+          case TextType.Heading1:
+            {
+              AddTextTypeClass("zero-text-heading-1");
+              break;
+            }
+          case TextType.Heading2:
+            {
+              AddTextTypeClass("zero-text-heading-2");
+              break;
+            }
+          case TextType.Heading3:
+            {
+              AddTextTypeClass("zero-text-heading-3");
+              break;
+            }
+          case TextType.Disclaimer:
+            {
+              AddTextTypeClass("zero-text-diclaimer");
+              return;
+            }
+          case TextType.Body:
+          default:
+            {
+              AddTextTypeClass("zero-text-body");
+              return;
+            }
         }
-        RemoveFromClassList("zero-text-heading");
-        AddToClassList("zero-text-body");
       }
     }
 
@@ -65,6 +96,21 @@ namespace Zero
     {
       AddToClassList(ussClassName);
       this.text = text;
+    }
+
+    private void AddTextTypeClass(string className)
+    {
+      foreach (string cls in textClassLists)
+      {
+        if (cls == className)
+        {
+          AddToClassList(cls);
+        }
+        else
+        {
+          RemoveFromClassList(cls);
+        }
+      }
     }
   }
 }
