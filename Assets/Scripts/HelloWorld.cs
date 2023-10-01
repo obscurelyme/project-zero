@@ -16,6 +16,10 @@ public class HelloWorld : MonoBehaviour
     dialogs = root.Query<Zero.Dialog>().ToList();
     buttons = root.Query<Button>(className: "dialog-button-activator").ToList();
 
+    dialogs[2].OnConfirm += () =>
+    {
+      Debug.Log("Third dialog was confirmed.");
+    };
     dialogs[4].OnConfirm += CloseApplication;
 
     buttons[0].RegisterCallback<ClickEvent>((evt) => dialogs[0].Open = true);

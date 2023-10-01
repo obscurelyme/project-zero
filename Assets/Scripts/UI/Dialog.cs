@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -23,11 +25,10 @@ namespace Zero
   /// </summary>
   public class Dialog : VisualElement
   {
-    private string _miscInfo;
     private bool _open = false;
-    private DialogType _type;
-    private string _title;
-    private string _description;
+    private DialogType _type = DialogType.Info;
+    private string _title = "";
+    private string _description = "";
     public new class UxmlFactory : UxmlFactory<Dialog, UxmlTraits> { }
 
     public new class UxmlTraits : VisualElement.UxmlTraits
@@ -53,7 +54,7 @@ namespace Zero
       public override void Init(VisualElement ve, IUxmlAttributes attrs, CreationContext ctx)
       {
         base.Init(ve, attrs, ctx);
-        Dialog thisDialog = ve as Dialog;
+        Dialog thisDialog = (ve as Dialog)!;
 
         thisDialog.Type = _typeAttr.GetValueFromBag(attrs, ctx);
         thisDialog.Description = _descriptionAttr.GetValueFromBag(attrs, ctx);
@@ -64,14 +65,14 @@ namespace Zero
     /// <summary>
     /// Event fired when the confirm button is clicked.
     /// </summary>
-    public Action OnConfirm;
+    public Action? OnConfirm;
     /// <summary>
     /// Event fired when the cancel button is clicked.
     /// </summary>
-    public Action OnCancel;
+    public Action? OnCancel;
 
-    public static Action OnDialogOpen;
-    public static Action OnDialogClose;
+    public static Action? OnDialogOpen;
+    public static Action? OnDialogClose;
 
     Label titleText => this.Q<Label>("dialog-title-content");
     Label contentText => this.Q<Label>("dialog-content-text");
@@ -87,18 +88,12 @@ namespace Zero
 
       confirmButton.RegisterCallback<ClickEvent>(evt =>
       {
-        if (OnConfirm != null)
-        {
-          OnConfirm.Invoke();
-        }
+        OnConfirm?.Invoke();
         Open = false;
       });
       cancelButton.RegisterCallback<ClickEvent>(evt =>
       {
-        if (OnCancel != null)
-        {
-          OnCancel.Invoke();
-        }
+        OnCancel?.Invoke();
         Open = false;
       });
 
@@ -115,18 +110,12 @@ namespace Zero
 
       confirmButton.RegisterCallback<ClickEvent>(evt =>
       {
-        if (OnConfirm != null)
-        {
-          OnConfirm.Invoke();
-        }
+        OnConfirm?.Invoke();
         Open = false;
       });
       cancelButton.RegisterCallback<ClickEvent>(evt =>
       {
-        if (OnCancel != null)
-        {
-          OnCancel.Invoke();
-        }
+        OnCancel?.Invoke();
         Open = false;
       });
 
@@ -230,7 +219,6 @@ namespace Zero
         contentText.text = _description;
       }
     }
-
     public DialogType Type
     {
       get { return _type; }
@@ -239,12 +227,6 @@ namespace Zero
         _type = value;
         ToggleCancelButton();
       }
-    }
-
-    public string MiscInfo
-    {
-      get { return _miscInfo; }
-      set { _miscInfo = value; }
     }
     private void ToggleCancelButton()
     {

@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Zero.Text tabindex="-1" name="HeadingText" text="Heading" type="Heading1" />
+    <Zero.Text tabindex="-1" text="Body text" name="BodyText" />
+    <Zero.Text tabindex="-1" type="Heading2" />
+    <Zero.Text tabindex="-1" type="Heading3" />
+</ui:UXML>
