@@ -2,7 +2,6 @@
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
 
-
 namespace Zero
 {
   public enum TextType
@@ -51,7 +50,7 @@ namespace Zero
             }
           case TextType.Disclaimer:
             {
-              AddTextTypeClass("zero-text-diclaimer");
+              AddTextTypeClass("zero-text-disclaimer");
               return;
             }
           case TextType.Body:

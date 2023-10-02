@@ -1,4 +1,5 @@
 @import url("unity-theme://default");
+@import url("Container.uss");
 
 :root {
     --teal: #3EC1A7;
@@ -63,7 +64,7 @@ Text.zero-text-body {
     font-size: var(--md-font-size);
 }
 
-Text.zero-text-diclaimer {
+Text.zero-text-disclaimer {
     font-size: var(--sm-font-size);
     -unity-font-style: italic;
 }

@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Zero.Container justifyContent="Center" alignItems="Center" style="align-items: stretch; justify-content: center;">
+        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 200px;" />
+        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 200px;" />
+        <ui:Slider picking-mode="Ignore" label="Slider" value="42" high-value="100" style="width: 500px; flex-grow: 0;" />
+    </Zero.Container>
+</ui:UXML>
