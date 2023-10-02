@@ -1,12 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 using UnityEngine.UIElements;
 
 namespace Zero
 {
+  public enum GridSize
+  {
+    One = 1,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Ten,
+    Eleven,
+    Twelve
+  }
+
   public class Container : VisualElement
   {
+    GridSize _priorColumnSize = GridSize.Twelve;
+    GridSize _currentColumnSize = GridSize.Twelve;
+    GridSize _priorRowSize = GridSize.Twelve;
+    GridSize _currentRowSize = GridSize.Twelve;
     UnityEngine.UIElements.Justify _justifyContent;
     UnityEngine.UIElements.Align _alignItems;
     UnityEngine.UIElements.FlexDirection _direction;
@@ -17,12 +35,38 @@ namespace Zero
       set
       {
         _direction = value;
-        if (_direction == UnityEngine.UIElements.FlexDirection.Row)
+        switch (_direction)
         {
-          AddToClassList("zero-container-row");
-          return;
+          case FlexDirection.Row:
+            {
+              RemoveFromClassList("zero-container-row-reverse");
+              RemoveFromClassList("zero-container-column-reverse");
+              AddToClassList("zero-container-row");
+              break;
+            }
+          case FlexDirection.RowReverse:
+            {
+              RemoveFromClassList("zero-container-row");
+              RemoveFromClassList("zero-container-column-reverse");
+              AddToClassList("zero-container-row-reverse");
+              break;
+            }
+          case FlexDirection.ColumnReverse:
+            {
+              RemoveFromClassList("zero-container-row-reverse");
+              RemoveFromClassList("zero-container-row");
+              AddToClassList("zero-container-column-reverse");
+              break;
+            }
+          default:
+          case FlexDirection.Column:
+            {
+              RemoveFromClassList("zero-container-row");
+              RemoveFromClassList("zero-container-row-reverse");
+              RemoveFromClassList("zero-container-column-reverse");
+              break;
+            }
         }
-        RemoveFromClassList("zero-container-row");
       }
     }
     public UnityEngine.UIElements.Justify JustifyContent
@@ -49,6 +93,28 @@ namespace Zero
         _alignItems = value;
         ClearAlignItemsClass();
         ApplyAlignItemsClass();
+      }
+    }
+    public GridSize ColumnSize
+    {
+      get { return _currentColumnSize; }
+      set
+      {
+        _priorColumnSize = _currentColumnSize;
+        _currentColumnSize = value;
+        RemoveFromClassList($"col-{Convert.ToInt32(_priorColumnSize)}");
+        AddToClassList($"col-{Convert.ToInt32(_currentColumnSize)}");
+      }
+    }
+    public GridSize RowSize
+    {
+      get { return _currentRowSize; }
+      set
+      {
+        _priorRowSize = _currentRowSize;
+        _currentRowSize = value;
+        RemoveFromClassList($"row-{Convert.ToInt32(_priorRowSize)}");
+        AddToClassList($"row-{Convert.ToInt32(_currentRowSize)}");
       }
     }
 
@@ -133,20 +199,30 @@ namespace Zero
     {
       readonly UxmlEnumAttributeDescription<UnityEngine.UIElements.Justify> _justifyContentAttr = new UxmlEnumAttributeDescription<UnityEngine.UIElements.Justify>
       {
-        name = "justifyContent",
+        name = "justify-content",
         defaultValue = Justify.FlexStart
       };
 
       readonly UxmlEnumAttributeDescription<UnityEngine.UIElements.Align> _alignItemsAttr = new UxmlEnumAttributeDescription<UnityEngine.UIElements.Align>
       {
-        name = "alignItems",
+        name = "align-items",
         defaultValue = Align.Stretch
       };
 
       readonly UxmlEnumAttributeDescription<UnityEngine.UIElements.FlexDirection> _flexDirectionAttr = new UxmlEnumAttributeDescription<UnityEngine.UIElements.FlexDirection>
       {
-        name = "flexDirection",
+        name = "flex-direction",
         defaultValue = FlexDirection.Column
+      };
+      readonly UxmlEnumAttributeDescription<GridSize> _columnSizeAttr = new UxmlEnumAttributeDescription<GridSize>
+      {
+        name = "column-size",
+        defaultValue = GridSize.Twelve
+      };
+      readonly UxmlEnumAttributeDescription<GridSize> _rowSizeAttr = new UxmlEnumAttributeDescription<GridSize>
+      {
+        name = "row-size",
+        defaultValue = GridSize.Twelve
       };
 
       public override void Init(VisualElement ve, IUxmlAttributes attrs, CreationContext ctx)
@@ -157,6 +233,8 @@ namespace Zero
         thisEl.JustifyContent = _justifyContentAttr.GetValueFromBag(attrs, ctx);
         thisEl.AlignItems = _alignItemsAttr.GetValueFromBag(attrs, ctx);
         thisEl.FlexDirection = _flexDirectionAttr.GetValueFromBag(attrs, ctx);
+        thisEl.ColumnSize = _columnSizeAttr.GetValueFromBag(attrs, ctx);
+        thisEl.RowSize = _rowSizeAttr.GetValueFromBag(attrs, ctx);
       }
     }
 

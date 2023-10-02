@@ -2,12 +2,21 @@ Container.zero-container {
     display: flex;
     flex-grow: 0;
     flex-shrink: 0;
+    flex-wrap: wrap;
     overflow: hidden;
     flex-direction: column;
 }
 
 Container.zero-container-row {
     flex-direction: row;
+}
+
+Container.zero-container-row-reverse {
+    flex-direction: row-reverse;
+}
+
+Container.zero-container-column-reverse {
+    flex-direction: column-reverse;
 }
 
 Container.zero-container.justify-content-start {
@@ -44,4 +53,100 @@ Container.zero-container.align-items-center {
 
 Container.zero-container.align-items-stretch {
     align-items: stretch;
+}
+
+Container.row-12 {
+    height: 100%;
+}
+
+Container.row-11 {
+    height: 91.6%
+}
+
+Container.row-10 {
+    height: 83%
+}
+
+Container.row-9 {
+    height: 75%
+}
+
+Container.row-8 {
+    height: 66.66%
+}
+
+Container.row-7 {
+    height: 58%
+}
+
+Container.row-6 {
+    height: 50%;
+}
+
+Container.row-5 {
+    height: 41.6%
+}
+
+Container.row-4 {
+    height: 33.33%;
+}
+
+Container.row-3 {
+    height: 25%;
+}
+
+Container.row-2 {
+    height: 16.66%
+}
+
+Container.row-1 {
+    height: 8.33%;
+}
+
+Container.col-12 {
+    width: 100%;
+}
+
+Container.col-11 {
+    width: 91.6%
+}
+
+Container.col-10 {
+    width: 83%
+}
+
+Container.col-9 {
+    width: 75%
+}
+
+Container.col-8 {
+    width: 66.66%
+}
+
+Container.col-7 {
+    width: 58%
+}
+
+Container.col-6 {
+    width: 50%;
+}
+
+Container.col-5 {
+    width: 41.6%
+}
+
+Container.col-4 {
+    width: 33.33%;
+}
+
+Container.col-3 {
+    width: 25%;
+}
+
+Container.col-2 {
+    width: 16.66%
+}
+
+Container.col-1 {
+    width: 8.33%;
 }

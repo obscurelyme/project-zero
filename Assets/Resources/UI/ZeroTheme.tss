@@ -1,45 +1,7 @@
 @import url("unity-theme://default");
+@import url("Variables.uss");
 @import url("Container.uss");
-
-:root {
-    --teal: #3EC1A7;
-    --light-teal: #A6E3D7;
-    --black: #222;
-    --white: #ddd;
-
-    --primary-color: var(--teal);
-    --secondary-color: var(--light-teal);
-    --paper-background: var(--white);
-    --text-color: var(--black);
-
-    --xl-font-size: 42px;
-    --lg-font-size: 36px;
-    --md-font-size: 18px;
-    --sm-font-size: 12px;
-
-    --heading-marginY: 24px;
-    --heading-marginX: 16px;
-
-    --spacing-1: 8px;
-    --spacing-2: 16px;
-    --spacing-3: 24px;
-    --spacing-4: 32px;
-}
-
-Button.zero-button {
-    border-width: 0px;
-    border-radius: 8px;
-    min-width: 50px;
-    height: 50px;
-    padding: 8px;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    transition: all 0.25s linear;
-}
-
-Button.zero-button:hover, Button.zero-button:focus {
-    background-color: var(--secondary-color);
-}
+@import url("Button.uss");
 
 Text.zero-text {
     color: var(--text-color);
@@ -70,17 +32,17 @@ Text.zero-text-disclaimer {
 }
 
 .zero-margin-1 {
-    margin: 8px;
+    margin: var(--spacing-1);
 }
 
 .zero-marginY-1 {
-    margin: 8px 0px;
+    margin: var(--spacing-1) 0px;
 }
 
 .zero-marginX-1 {
-    margin: 0px 8px;
+    margin: 0px var(--spacing-1);
 }
 
 .zero-padding-1 {
-    padding: 8px;
+    padding: var(--spacing-1);
 }

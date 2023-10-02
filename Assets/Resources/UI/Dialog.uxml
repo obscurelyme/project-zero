@@ -8,8 +8,8 @@
       <ui:Label name="dialog-content-text" text="" />
     </ui:ScrollView>
     <ui:VisualElement class="dialog-footer">
-      <ui:Button class="zero-button" name="dialog-confirm-button" text="Yes" />
-      <ui:Button class="zero-button" name="dialog-cancel-button" text="No" />
+      <Zero.Button name="dialog-confirm-button" text="Yes" />
+      <Zero.Button name="dialog-cancel-button" text="No" />
     </ui:VisualElement>
   </ui:VisualElement>
 </ui:UXML>

@@ -2,13 +2,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 500px;
   max-height: 500px;
   background-color: #eee;
   color: #222;
   font-size: 18px;
   padding: 8px;
   border-radius: 8px;
+}
+
+.dialog-container.dialog-size-large {
+  width: 960px;
+}
+
+.dialog-container.dialog-size-medium {
+  width: 550px;
+}
+
+.dialog-container.dialog-size-small {
+  width: 350px;
 }
 
 .dialog-content, .dialog-title, .dialog-footer {

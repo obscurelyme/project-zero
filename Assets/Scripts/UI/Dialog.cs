@@ -78,6 +78,7 @@ namespace Zero
     Label contentText => this.Q<Label>("dialog-content-text");
     Button confirmButton => this.Q<Button>("dialog-confirm-button");
     Button cancelButton => this.Q<Button>("dialog-cancel-button");
+    VisualElement container => this.Q<VisualElement>(className: "dialog-container");
 
     public Dialog()
     {
@@ -169,6 +170,7 @@ namespace Zero
 
     private void InitializeUI()
     {
+      container.AddToClassList("dialog-size-medium");
       Open = false;
     }
 

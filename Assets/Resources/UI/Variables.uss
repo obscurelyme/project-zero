@@ -1,0 +1,24 @@
+:root {
+    --teal: #3EC1A7;
+    --light-teal: #A6E3D7;
+    --black: #222;
+    --white: #ddd;
+
+    --primary-color: var(--teal);
+    --secondary-color: var(--light-teal);
+    --paper-background: var(--white);
+    --text-color: var(--black);
+
+    --xl-font-size: 42px;
+    --lg-font-size: 36px;
+    --md-font-size: 18px;
+    --sm-font-size: 12px;
+
+    --heading-marginY: 24px;
+    --heading-marginX: 16px;
+
+    --spacing-1: 8px;
+    --spacing-2: 16px;
+    --spacing-3: 24px;
+    --spacing-4: 32px;
+}

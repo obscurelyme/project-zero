@@ -7,14 +7,14 @@ public class HelloWorld : MonoBehaviour
 {
   [SerializeField] UIDocument _document;
 
-  List<Button> buttons;
+  List<Zero.Button> buttons;
   List<Zero.Dialog> dialogs;
 
   private void Start()
   {
     var root = _document.rootVisualElement;
     dialogs = root.Query<Zero.Dialog>().ToList();
-    buttons = root.Query<Button>(className: "dialog-button-activator").ToList();
+    buttons = root.Query<Zero.Button>(className: "dialog-button-activator").ToList();
 
     dialogs[2].OnConfirm += () =>
     {

@@ -1,0 +1,26 @@
+Button.zero-button {
+    border-width: 0px;
+    border-radius: 8px;
+    width: auto;
+    height: 50px;
+    padding: 8px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    transition: all 0.25s linear;
+}
+
+Button.zero-button.button-size-large {
+    width: 200px;
+}
+
+Button.zero-button.button-size-medium {
+    width: 150px;
+}
+
+Button.zero-button.button-size-small {
+    width: 100px;
+}
+
+Button.zero-button:hover, Button.zero-button:focus {
+    background-color: var(--secondary-color);
+}
