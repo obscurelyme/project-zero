@@ -25,6 +25,7 @@ namespace Zero
   /// </summary>
   public class Dialog : VisualElement
   {
+    public static Action? GlobalDialogClosed;
     private bool _open = false;
     private DialogType _type = DialogType.Info;
     private string _title = "";
@@ -87,12 +88,27 @@ namespace Zero
       Type = DialogType.Info;
       contentText.text = name;
 
+      this.RegisterCallback<NavigationCancelEvent>(evt =>
+      {
+        OnCancel?.Invoke();
+        Open = false;
+      });
       confirmButton.RegisterCallback<ClickEvent>(evt =>
       {
         OnConfirm?.Invoke();
         Open = false;
       });
+      confirmButton.RegisterCallback<NavigationSubmitEvent>(evt =>
+      {
+        OnConfirm?.Invoke();
+        Open = false;
+      });
       cancelButton.RegisterCallback<ClickEvent>(evt =>
+      {
+        OnCancel?.Invoke();
+        Open = false;
+      });
+      cancelButton.RegisterCallback<NavigationSubmitEvent>(evt =>
       {
         OnCancel?.Invoke();
         Open = false;
@@ -189,6 +205,8 @@ namespace Zero
           if (OnDialogOpen != null)
           {
             OnDialogOpen.Invoke();
+            confirmButton.Focus();
+
           }
         }
         else
