@@ -114,6 +114,7 @@ namespace Zero
         Open = false;
       });
 
+      SetUpNavigation();
       InitializeUI();
     }
 
@@ -136,6 +137,7 @@ namespace Zero
         Open = false;
       });
 
+      SetUpNavigation();
       InitializeUI();
 
       // NOTE: Sample code for testing, do not use.
@@ -171,6 +173,7 @@ namespace Zero
         Open = false;
       });
 
+      SetUpNavigation();
       InitializeUI();
 
       // NOTE: Sample code for testing, do not use.
@@ -191,52 +194,8 @@ namespace Zero
     /// </summary>
     private void SetUpNavigation()
     {
-      if (Type == DialogType.Confirmation)
-      {
-        confirmButton.RegisterCallback<NavigationMoveEvent>(evt =>
-              {
-                switch (evt.direction)
-                {
-                  case NavigationMoveEvent.Direction.Left:
-                  case NavigationMoveEvent.Direction.Right:
-                    {
-                      cancelButton.Focus();
-                      break;
-                    }
-                  default:
-                    {
-                      // NOTE: Intentionally do nothing, dialog buttons only support left and right navigations
-                      break;
-                    }
-                }
-                evt.PreventDefault();
-              });
-        cancelButton.RegisterCallback<NavigationMoveEvent>(evt =>
-              {
-                switch (evt.direction)
-                {
-                  case NavigationMoveEvent.Direction.Left:
-                  case NavigationMoveEvent.Direction.Right:
-                    {
-                      confirmButton.Focus();
-                      break;
-                    }
-                  default:
-                    {
-                      // NOTE: Intentionally do nothing, dialog buttons only support left and right navigations
-                      break;
-                    }
-                }
-                evt.PreventDefault();
-              });
-      }
-      else
-      {
-        confirmButton.RegisterCallback<NavigationMoveEvent>(evt =>
-        {
-          evt.PreventDefault();
-        });
-      }
+      confirmButton.RegisterCallback<NavigationMoveEvent>(HandleConfirmButtonNavigation);
+      cancelButton.RegisterCallback<NavigationMoveEvent>(HandleCancelButtonNavigation);
     }
 
     private void InitializeUI()
@@ -301,7 +260,6 @@ namespace Zero
       {
         _type = value;
         ToggleCancelButton();
-        SetUpNavigation();
       }
     }
     private void ToggleCancelButton()
@@ -314,7 +272,7 @@ namespace Zero
       cancelButton.AddToClassList("dialog-hidden-element");
     }
 
-    private void HandleButtonNavigation(NavigationMoveEvent evt)
+    private void HandleConfirmButtonNavigation(NavigationMoveEvent evt)
     {
       if (Type == DialogType.Info)
       {
@@ -322,6 +280,45 @@ namespace Zero
         return;
       }
 
+      switch (evt.direction)
+      {
+        case NavigationMoveEvent.Direction.Left:
+        case NavigationMoveEvent.Direction.Right:
+          {
+            cancelButton.Focus();
+            break;
+          }
+        default:
+          {
+            // NOTE: Intentionally do nothing, dialog buttons only support left and right navigations
+            break;
+          }
+      }
+      evt.PreventDefault();
+    }
+
+    private void HandleCancelButtonNavigation(NavigationMoveEvent evt)
+    {
+      if (Type == DialogType.Info)
+      {
+        evt.PreventDefault();
+        return;
+      }
+
+      switch (evt.direction)
+      {
+        case NavigationMoveEvent.Direction.Left:
+        case NavigationMoveEvent.Direction.Right:
+          {
+            confirmButton.Focus();
+            break;
+          }
+        default:
+          {
+            // NOTE: Intentionally do nothing, dialog buttons only support left and right navigations
+            break;
+          }
+      }
       evt.PreventDefault();
     }
   }
