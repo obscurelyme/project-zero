@@ -184,6 +184,61 @@ namespace Zero
       asset.CloneTree(this);
     }
 
+    /// <summary>
+    /// Sets up the navigation of the button[s] within the dialog.
+    /// The idea is to ensure that the end user cannot navigation
+    /// outside the bounds of the dialog when active.
+    /// </summary>
+    private void SetUpNavigation()
+    {
+      if (Type == DialogType.Confirmation)
+      {
+        confirmButton.RegisterCallback<NavigationMoveEvent>(evt =>
+              {
+                switch (evt.direction)
+                {
+                  case NavigationMoveEvent.Direction.Left:
+                  case NavigationMoveEvent.Direction.Right:
+                    {
+                      cancelButton.Focus();
+                      break;
+                    }
+                  default:
+                    {
+                      // NOTE: Intentionally do nothing, dialog buttons only support left and right navigations
+                      break;
+                    }
+                }
+                evt.PreventDefault();
+              });
+        cancelButton.RegisterCallback<NavigationMoveEvent>(evt =>
+              {
+                switch (evt.direction)
+                {
+                  case NavigationMoveEvent.Direction.Left:
+                  case NavigationMoveEvent.Direction.Right:
+                    {
+                      confirmButton.Focus();
+                      break;
+                    }
+                  default:
+                    {
+                      // NOTE: Intentionally do nothing, dialog buttons only support left and right navigations
+                      break;
+                    }
+                }
+                evt.PreventDefault();
+              });
+      }
+      else
+      {
+        confirmButton.RegisterCallback<NavigationMoveEvent>(evt =>
+        {
+          evt.PreventDefault();
+        });
+      }
+    }
+
     private void InitializeUI()
     {
       container.AddToClassList("dialog-size-medium");
@@ -246,6 +301,7 @@ namespace Zero
       {
         _type = value;
         ToggleCancelButton();
+        SetUpNavigation();
       }
     }
     private void ToggleCancelButton()
@@ -256,6 +312,17 @@ namespace Zero
         return;
       }
       cancelButton.AddToClassList("dialog-hidden-element");
+    }
+
+    private void HandleButtonNavigation(NavigationMoveEvent evt)
+    {
+      if (Type == DialogType.Info)
+      {
+        evt.PreventDefault();
+        return;
+      }
+
+      evt.PreventDefault();
     }
   }
 }

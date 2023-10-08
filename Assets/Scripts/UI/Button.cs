@@ -15,7 +15,6 @@ namespace Zero
 
   public class Button : UnityEngine.UIElements.Button
   {
-    private static List<Button> _allButtons = new List<Button>();
     ButtonSize _priorSize = ButtonSize.Medium;
     ButtonSize _currentSize = ButtonSize.Medium;
     ButtonSize Size
@@ -29,7 +28,6 @@ namespace Zero
         AddUsedButtonSizeClass();
       }
     }
-
     public new class UxmlFactory : UxmlFactory<Button, UxmlTraits> { }
     public new class UxmlTraits : UnityEngine.UIElements.Button.UxmlTraits
     {
@@ -53,12 +51,6 @@ namespace Zero
     public Button()
     {
       AddToClassList(ussClassName);
-      _allButtons.Add(this);
-    }
-
-    ~Button()
-    {
-      _allButtons.Remove(this);
     }
 
     private void RemoveUnusedButtonSizeClass()

@@ -18,25 +18,8 @@ public class HelloWorld : MonoBehaviour
     input = new PlayerInputActions();
   }
 
-  private void ActivateAllButtons()
-  {
-    foreach (var btn in buttons)
-    {
-      btn.focusable = true;
-    }
-  }
-
-  private void DeactivateAllButtons()
-  {
-    foreach (var btn in buttons)
-    {
-      btn.focusable = false;
-    }
-  }
-
   private void Start()
   {
-    Zero.Dialog.GlobalDialogClosed += ActivateAllButtons;
     var root = _document.rootVisualElement;
     dialogs = root.Query<Zero.Dialog>().ToList();
     buttons = root.Query<Zero.Button>(className: "dialog-button-activator").ToList();
@@ -51,52 +34,25 @@ public class HelloWorld : MonoBehaviour
     buttons[0].RegisterCallback<ClickEvent>(evt =>
     {
       dialogs[0].Open = true;
-      DeactivateAllButtons();
     });
     buttons[1].RegisterCallback<ClickEvent>(evt =>
     {
       dialogs[1].Open = true;
-      DeactivateAllButtons();
 
     });
     buttons[2].RegisterCallback<ClickEvent>(evt =>
     {
       dialogs[2].Open = true;
-      DeactivateAllButtons();
 
     });
     buttons[3].RegisterCallback<ClickEvent>(evt =>
     {
       dialogs[3].Open = true;
-      DeactivateAllButtons();
 
     });
     buttons[4].RegisterCallback<ClickEvent>(evt =>
     {
       dialogs[4].Open = true;
-      DeactivateAllButtons();
-
-    });
-
-    buttons[0].RegisterCallback<NavigationMoveEvent>(evt =>
-    {
-      Debug.Log($"{evt.currentTarget}");
-    });
-    buttons[1].RegisterCallback<NavigationMoveEvent>(evt =>
-    {
-      Debug.Log($"{evt.currentTarget}");
-    });
-    buttons[2].RegisterCallback<NavigationMoveEvent>(evt =>
-    {
-      Debug.Log($"{evt.currentTarget}");
-    });
-    buttons[3].RegisterCallback<NavigationMoveEvent>(evt =>
-    {
-      Debug.Log($"{evt.currentTarget}");
-    });
-    buttons[4].RegisterCallback<NavigationMoveEvent>(evt =>
-    {
-      Debug.Log($"{evt.currentTarget}");
     });
   }
 
