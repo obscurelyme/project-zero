@@ -35,14 +35,46 @@ Text.zero-text-disclaimer {
     margin: var(--spacing-1);
 }
 
-.zero-marginY-1 {
+.zero-margin-y-1 {
     margin: var(--spacing-1) 0px;
 }
 
-.zero-marginX-1 {
+.zero-margin-top-1 {
+    margin-top: var(--spacing-1);
+}
+
+.zero-margin-bottom-1 {
+    margin-bottom: var(--spacing-1);
+}
+
+.zero-margin-right-1 {
+    margin-right: var(--spacing-1);
+}
+
+.zero-margin-left-1 {
+    margin-left: var(--spacing-1);
+}
+
+.zero-margin-x-1 {
     margin: 0px var(--spacing-1);
 }
 
 .zero-padding-1 {
     padding: var(--spacing-1);
+}
+
+.zero-padding-top-1 {
+    padding-top: var(--spacing-1);
+}
+
+.zero-padding-bottom-1 {
+    padding-bottom: var(--spacing-1);
+}
+
+.zero-padding-right-1 {
+    padding-right: var(--spacing-1);
+}
+
+.zero-padding-left-1 {
+    padding-left: var(--spacing-1);
 }

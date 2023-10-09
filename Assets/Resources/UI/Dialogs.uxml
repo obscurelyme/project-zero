@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Zero.DialogPortal>
+        <Zero.Dialog title="Quit game" description="Are you sure you want to quit the game?" type="Confirmation" focusable="false" />
+    </Zero.DialogPortal>
+</ui:UXML>

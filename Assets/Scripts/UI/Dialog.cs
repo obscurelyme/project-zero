@@ -25,7 +25,6 @@ namespace Zero
   /// </summary>
   public class Dialog : VisualElement
   {
-    public static Action? GlobalDialogClosed;
     private bool _open = false;
     private DialogType _type = DialogType.Info;
     private string _title = "";

@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Zero.Container size="Twelve" justify-content="Center" align-items="center" name="Container" class="list-of-buttons">
-        <Zero.Button name="first-dialog-button" text="Activate First Dialog" size="Large" class="dialog-button-activator" />
+        <Zero.Button name="first-dialog-button" text="Play Game" size="Large" class="dialog-button-activator" />
         <Zero.Button name="second-dialog-button" text="Activate Second Dialog" size="Large" class="dialog-button-activator" />
         <Zero.Button name="third-dialog-button" text="Activate Third Dialog" size="Large" class="dialog-button-activator" />
         <Zero.Button name="fourth-dialog-button" text="Activate Fourth Dialog" size="Large" class="dialog-button-activator" />

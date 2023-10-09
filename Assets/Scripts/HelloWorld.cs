@@ -33,26 +33,23 @@ public class HelloWorld : MonoBehaviour
     buttons[0].RegisterCallback<NavigationSubmitEvent>((evt) => dialogs[0].Open = true);
     buttons[0].RegisterCallback<ClickEvent>(evt =>
     {
-      dialogs[0].Open = true;
+      DialogPortal.OpenDialog("FirstDialog");
     });
     buttons[1].RegisterCallback<ClickEvent>(evt =>
     {
-      dialogs[1].Open = true;
-
+      DialogPortal.OpenDialog("SecondDialog");
     });
     buttons[2].RegisterCallback<ClickEvent>(evt =>
     {
-      dialogs[2].Open = true;
-
+      DialogPortal.OpenDialog("ThirdDialog");
     });
     buttons[3].RegisterCallback<ClickEvent>(evt =>
     {
-      dialogs[3].Open = true;
-
+      DialogPortal.OpenDialog("FourthDialog");
     });
     buttons[4].RegisterCallback<ClickEvent>(evt =>
     {
-      dialogs[4].Open = true;
+      DialogPortal.OpenDialog("FifthDialog");
     });
   }
 

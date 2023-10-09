@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Zero.Container justify-content="Center" align-items="Center" row-size="Twelve" column-size="Twelve" flex-direction="Row">
+        <Zero.Container name="Container" column-size="Six" row-size="Six" justify-content="Center" align-items="Center" flex-direction="Column">
+            <Zero.Button name="play-game" text="Play Game" size="Large" />
+            <Zero.Button name="quit-game" text="Quit" size="Large" />
+        </Zero.Container>
+    </Zero.Container>
+    <Zero.DialogPortal>
+        <Zero.Dialog name="quit-game" title="Quit game" type="Confirmation" description="Are you sure you want to quit the game?" />
+    </Zero.DialogPortal>
+</ui:UXML>

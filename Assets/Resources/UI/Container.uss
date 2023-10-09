@@ -28,11 +28,11 @@ Container.zero-container.justify-content-end {
 }
 
 Container.zero-container.justify-content-space-around {
-    justify-content: flex-end;
+    justify-content: space-around;
 }
 
 Container.zero-container.justify-content-space-between {
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 Container.zero-container.justify-content-center {

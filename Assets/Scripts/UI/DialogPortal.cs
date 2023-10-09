@@ -1,11 +1,16 @@
 using System.Collections.Generic;
+using Codice.Client.Common;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UIElements;
 
 namespace Zero
 {
   public class DialogPortal : VisualElement
   {
+    private static DialogPortal instance;
+
     public new class UxmlFactory : UxmlFactory<DialogPortal> { }
 
     public List<Dialog> dialogs => this.Query<Dialog>().ToList();
@@ -27,6 +32,19 @@ namespace Zero
         Dialog.OnDialogOpen -= DisplayPortal;
         Dialog.OnDialogClose -= HidePortal;
       });
+
+      instance = this;
+    }
+
+    public static void OpenDialog(string dialogName)
+    {
+      Dialog d = instance.Query<Dialog>(dialogName);
+      if (d != null)
+      {
+        d.Open = true;
+        return;
+      }
+      throw new System.Exception($"Dialog {dialogName} does not exist within the Dialg");
     }
 
     private void LoadUXMLAsset()
