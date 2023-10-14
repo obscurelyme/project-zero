@@ -2,11 +2,11 @@
     <Zero.Container row-size="One" justify-content="SpaceBetween" align-items="Center" flex-direction="Row" column-size="Twelve" class="zero-padding-1" style="display: flex;">
         <Zero.Container justify-content="FlexStart" align-items="Center" flex-direction="Row" column-size="Four">
             <Zero.Text tabindex="-1" text="Lives:" type="Heading3" class="zero-margin-right-1" />
-            <Zero.Text binding-path="player-lives" tabindex="-1" text="3" />
+            <Zero.Text name="player-lives" tabindex="-1" text="3" />
         </Zero.Container>
         <Zero.Container justify-content="FlexEnd" align-items="Center" flex-direction="Row" column-size="Four">
             <Zero.Text tabindex="-1" text="Time:" type="Heading3" class="zero-margin-right-1" />
-            <Zero.Text binding-path="stage-time" tabindex="-1" text="02:09:00" />
+            <Zero.Text name="stage-time" tabindex="-1" text="02:09:00" style="width: 100px;" />
         </Zero.Container>
     </Zero.Container>
     <Zero.Container row-size="One" justify-content="SpaceBetween" align-items="Center" flex-direction="Row" name="Container" class="zero-padding-1" style="position: absolute; bottom: 0;">
