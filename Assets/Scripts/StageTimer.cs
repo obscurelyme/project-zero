@@ -5,7 +5,6 @@ public class StageTimer : MonoBehaviour
 {
   TimeSpan s;
   TimeSpan u;
-  float currentTime = 120;
   [SerializeField]
   string currentTimeString;
 
@@ -17,7 +16,6 @@ public class StageTimer : MonoBehaviour
   void Update()
   {
     u = s.Add(TimeSpan.FromSeconds(Time.deltaTime));
-    currentTime += Time.deltaTime;
     currentTimeString = u.ToString(@"mm\:ss\:ff");
     s = u;
   }
