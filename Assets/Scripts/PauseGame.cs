@@ -13,13 +13,13 @@ public class PauseGame : MonoBehaviour
     Cursor.visible = false;
 #endif
     playerInputActions = new PlayerInputActions();
-    playerInputActions.Player.Pause.Enable();
-    playerInputActions.Player.Pause.performed += ToggleGamePaused;
+    playerInputActions.General.Pause.Enable();
+    playerInputActions.General.Pause.performed += ToggleGamePaused;
   }
 
   void OnDestroy()
   {
-    playerInputActions.Player.Pause.performed -= ToggleGamePaused;
+    playerInputActions.General.Pause.performed -= ToggleGamePaused;
     Time.timeScale = 1;
   }
 

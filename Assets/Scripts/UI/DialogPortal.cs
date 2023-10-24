@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using Codice.Client.Common;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UIElements;
 
 namespace Zero

@@ -64,15 +64,6 @@ namespace Zero
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""bdf6dbec-25a2-4282-9166-08e8494988c3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -185,28 +176,6 @@ namespace Zero
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0164a9d5-6b0f-479d-a20d-abb5ffb84cb7"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c51e4996-aa6e-48e5-aa8b-d62ff733efa8"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -725,6 +694,45 @@ namespace Zero
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""General"",
+            ""id"": ""22c9dad7-3369-46d8-b82a-6729a8c30606"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef4b031d-e738-4e56-ad01-634320fe4505"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""caa32193-9290-4c97-a2e5-9f69889ebaaf"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65a44a79-49bf-4725-aa52-c234a8e57b8f"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -763,7 +771,6 @@ namespace Zero
             m_Player_Special1 = m_Player.FindAction("Special1", throwIfNotFound: true);
             m_Player_Special2 = m_Player.FindAction("Special2", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-            m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -776,6 +783,9 @@ namespace Zero
             m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
             m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+            // General
+            m_General = asset.FindActionMap("General", throwIfNotFound: true);
+            m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -841,7 +851,6 @@ namespace Zero
         private readonly InputAction m_Player_Special1;
         private readonly InputAction m_Player_Special2;
         private readonly InputAction m_Player_Move;
-        private readonly InputAction m_Player_Pause;
         public struct PlayerActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -850,7 +859,6 @@ namespace Zero
             public InputAction @Special1 => m_Wrapper.m_Player_Special1;
             public InputAction @Special2 => m_Wrapper.m_Player_Special2;
             public InputAction @Move => m_Wrapper.m_Player_Move;
-            public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -872,9 +880,6 @@ namespace Zero
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -891,9 +896,6 @@ namespace Zero
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
-                @Pause.started -= instance.OnPause;
-                @Pause.performed -= instance.OnPause;
-                @Pause.canceled -= instance.OnPause;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1029,6 +1031,52 @@ namespace Zero
             }
         }
         public UIActions @UI => new UIActions(this);
+
+        // General
+        private readonly InputActionMap m_General;
+        private List<IGeneralActions> m_GeneralActionsCallbackInterfaces = new List<IGeneralActions>();
+        private readonly InputAction m_General_Pause;
+        public struct GeneralActions
+        {
+            private @PlayerInputActions m_Wrapper;
+            public GeneralActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Pause => m_Wrapper.m_General_Pause;
+            public InputActionMap Get() { return m_Wrapper.m_General; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(GeneralActions set) { return set.Get(); }
+            public void AddCallbacks(IGeneralActions instance)
+            {
+                if (instance == null || m_Wrapper.m_GeneralActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_GeneralActionsCallbackInterfaces.Add(instance);
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+
+            private void UnregisterCallbacks(IGeneralActions instance)
+            {
+                @Pause.started -= instance.OnPause;
+                @Pause.performed -= instance.OnPause;
+                @Pause.canceled -= instance.OnPause;
+            }
+
+            public void RemoveCallbacks(IGeneralActions instance)
+            {
+                if (m_Wrapper.m_GeneralActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IGeneralActions instance)
+            {
+                foreach (var item in m_Wrapper.m_GeneralActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_GeneralActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public GeneralActions @General => new GeneralActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -1053,7 +1101,6 @@ namespace Zero
             void OnSpecial1(InputAction.CallbackContext context);
             void OnSpecial2(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
-            void OnPause(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
@@ -1067,6 +1114,10 @@ namespace Zero
             void OnRightClick(InputAction.CallbackContext context);
             void OnTrackedDevicePosition(InputAction.CallbackContext context);
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        }
+        public interface IGeneralActions
+        {
+            void OnPause(InputAction.CallbackContext context);
         }
     }
 }
