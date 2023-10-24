@@ -1,23 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+#nullable enable
+
 using UnityEngine;
 using Zero;
 
 public class PlayerFire : MonoBehaviour
 {
   PlayerInputActions.PlayerActions playerActions;
+  [SerializeField]
+  Transform missileSpawnLoc;
+  [SerializeField]
+  Missile missile;
 
   void Start()
   {
     playerActions = GetComponent<PlayerInput>().PlayerActions;
-  }
-
-  void OnEnable()
-  {
     playerActions.Fire.performed += Fire;
   }
 
-  void OnDisable()
+  void OnDestroy()
   {
     playerActions.Fire.performed -= Fire;
   }
@@ -25,5 +25,6 @@ public class PlayerFire : MonoBehaviour
   void Fire(UnityEngine.InputSystem.InputAction.CallbackContext _)
   {
     Debug.Log("Fire laser");
+    missile.Fire(missileSpawnLoc.position);
   }
 }
