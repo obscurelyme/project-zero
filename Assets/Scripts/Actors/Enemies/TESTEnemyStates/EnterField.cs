@@ -35,5 +35,6 @@ public class EnterField : State<TESTEnemy.TESTEnemyStates>
 
   public override void Exit()
   {
+    splineAnimate.Container = null;
   }
 }
