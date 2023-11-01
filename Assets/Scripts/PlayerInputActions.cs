@@ -733,6 +733,134 @@ namespace Zero
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""StateDriver"",
+            ""id"": ""db8d1522-7138-4fd0-8d2d-ce61bc8d89f5"",
+            ""actions"": [
+                {
+                    ""name"": ""State1"",
+                    ""type"": ""Button"",
+                    ""id"": ""6625d87d-9c4d-43f1-9fd7-5255eb12f49e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""State2"",
+                    ""type"": ""Button"",
+                    ""id"": ""3814e127-6a73-4e81-805c-20b5e8cae0b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""State3"",
+                    ""type"": ""Button"",
+                    ""id"": ""1198c037-42bd-4d3a-bdbc-76f68124fe92"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""State4"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6c12fde-0467-4c90-8daf-e29cc29faabd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""State5"",
+                    ""type"": ""Button"",
+                    ""id"": ""70aaaf47-eb3c-49f4-a497-e10c8f1c72ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""State6"",
+                    ""type"": ""Button"",
+                    ""id"": ""241fe247-4d2a-4dda-8112-7ccca5723831"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""916cf3ad-ad98-4c45-bc99-c417d9064829"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""State1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b5c1078-15e0-4702-b3a9-cf44fad2acf8"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""State2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee54d9a1-4837-4cc5-8133-7a2a5732fa0a"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""State3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05fe94a4-d5b4-433e-8bd7-708d02926df4"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""State4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a802695-2549-4132-9f1f-61d5809d0be6"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""State5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""113894b4-eb72-4905-8810-a56035ad9735"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""State6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -786,6 +914,14 @@ namespace Zero
             // General
             m_General = asset.FindActionMap("General", throwIfNotFound: true);
             m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
+            // StateDriver
+            m_StateDriver = asset.FindActionMap("StateDriver", throwIfNotFound: true);
+            m_StateDriver_State1 = m_StateDriver.FindAction("State1", throwIfNotFound: true);
+            m_StateDriver_State2 = m_StateDriver.FindAction("State2", throwIfNotFound: true);
+            m_StateDriver_State3 = m_StateDriver.FindAction("State3", throwIfNotFound: true);
+            m_StateDriver_State4 = m_StateDriver.FindAction("State4", throwIfNotFound: true);
+            m_StateDriver_State5 = m_StateDriver.FindAction("State5", throwIfNotFound: true);
+            m_StateDriver_State6 = m_StateDriver.FindAction("State6", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -1077,6 +1213,92 @@ namespace Zero
             }
         }
         public GeneralActions @General => new GeneralActions(this);
+
+        // StateDriver
+        private readonly InputActionMap m_StateDriver;
+        private List<IStateDriverActions> m_StateDriverActionsCallbackInterfaces = new List<IStateDriverActions>();
+        private readonly InputAction m_StateDriver_State1;
+        private readonly InputAction m_StateDriver_State2;
+        private readonly InputAction m_StateDriver_State3;
+        private readonly InputAction m_StateDriver_State4;
+        private readonly InputAction m_StateDriver_State5;
+        private readonly InputAction m_StateDriver_State6;
+        public struct StateDriverActions
+        {
+            private @PlayerInputActions m_Wrapper;
+            public StateDriverActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @State1 => m_Wrapper.m_StateDriver_State1;
+            public InputAction @State2 => m_Wrapper.m_StateDriver_State2;
+            public InputAction @State3 => m_Wrapper.m_StateDriver_State3;
+            public InputAction @State4 => m_Wrapper.m_StateDriver_State4;
+            public InputAction @State5 => m_Wrapper.m_StateDriver_State5;
+            public InputAction @State6 => m_Wrapper.m_StateDriver_State6;
+            public InputActionMap Get() { return m_Wrapper.m_StateDriver; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(StateDriverActions set) { return set.Get(); }
+            public void AddCallbacks(IStateDriverActions instance)
+            {
+                if (instance == null || m_Wrapper.m_StateDriverActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_StateDriverActionsCallbackInterfaces.Add(instance);
+                @State1.started += instance.OnState1;
+                @State1.performed += instance.OnState1;
+                @State1.canceled += instance.OnState1;
+                @State2.started += instance.OnState2;
+                @State2.performed += instance.OnState2;
+                @State2.canceled += instance.OnState2;
+                @State3.started += instance.OnState3;
+                @State3.performed += instance.OnState3;
+                @State3.canceled += instance.OnState3;
+                @State4.started += instance.OnState4;
+                @State4.performed += instance.OnState4;
+                @State4.canceled += instance.OnState4;
+                @State5.started += instance.OnState5;
+                @State5.performed += instance.OnState5;
+                @State5.canceled += instance.OnState5;
+                @State6.started += instance.OnState6;
+                @State6.performed += instance.OnState6;
+                @State6.canceled += instance.OnState6;
+            }
+
+            private void UnregisterCallbacks(IStateDriverActions instance)
+            {
+                @State1.started -= instance.OnState1;
+                @State1.performed -= instance.OnState1;
+                @State1.canceled -= instance.OnState1;
+                @State2.started -= instance.OnState2;
+                @State2.performed -= instance.OnState2;
+                @State2.canceled -= instance.OnState2;
+                @State3.started -= instance.OnState3;
+                @State3.performed -= instance.OnState3;
+                @State3.canceled -= instance.OnState3;
+                @State4.started -= instance.OnState4;
+                @State4.performed -= instance.OnState4;
+                @State4.canceled -= instance.OnState4;
+                @State5.started -= instance.OnState5;
+                @State5.performed -= instance.OnState5;
+                @State5.canceled -= instance.OnState5;
+                @State6.started -= instance.OnState6;
+                @State6.performed -= instance.OnState6;
+                @State6.canceled -= instance.OnState6;
+            }
+
+            public void RemoveCallbacks(IStateDriverActions instance)
+            {
+                if (m_Wrapper.m_StateDriverActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IStateDriverActions instance)
+            {
+                foreach (var item in m_Wrapper.m_StateDriverActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_StateDriverActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public StateDriverActions @StateDriver => new StateDriverActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -1118,6 +1340,15 @@ namespace Zero
         public interface IGeneralActions
         {
             void OnPause(InputAction.CallbackContext context);
+        }
+        public interface IStateDriverActions
+        {
+            void OnState1(InputAction.CallbackContext context);
+            void OnState2(InputAction.CallbackContext context);
+            void OnState3(InputAction.CallbackContext context);
+            void OnState4(InputAction.CallbackContext context);
+            void OnState5(InputAction.CallbackContext context);
+            void OnState6(InputAction.CallbackContext context);
         }
     }
 }

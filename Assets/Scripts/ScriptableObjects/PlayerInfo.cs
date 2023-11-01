@@ -17,13 +17,13 @@ public class PlayerInfo : ScriptableObject
     {
       int priorLives = _lives;
       _lives = value;
-      GameEvents.PlayerLivesChanged.Invoke(priorLives, _lives, priorLives > _lives);
+      GameEvents.PlayerLivesChanged?.Invoke(priorLives, _lives, priorLives > _lives);
     }
   }
 
   public void SubtractLife()
   {
     Lives = _lives - 1;
-    GameEvents.PlayerLostLife.Invoke();
+    GameEvents.PlayerLostLife?.Invoke();
   }
 }
